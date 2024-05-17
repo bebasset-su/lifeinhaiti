@@ -1,0 +1,10 @@
+nav{background-color: #2158a5;
+    font-family: Arial, Helvetica, sans-serif;}
+.img1{padding: 10px;
+    max-width: 100%;
+    min-width: none;
+    }
+h1{font-family: Arial, Helvetica, sans-serif ;;
+  }
+@media only screen and (max-width: 800px){
+    .img1 {display:none;}}

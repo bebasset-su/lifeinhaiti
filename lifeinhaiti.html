@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifeInHaitiLearningCenter</title>
+    <style>
+        h1{}
+        .img1{float: left; padding: 5px; flex-wrap: inherit;}
+        .header{float: right;
+        font-family: "Poetsen One", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        font-size:xx-large;}
+        .contact{
+            text-align: center; 
+            font-family: "Poetsen One", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            font-size:large;
+        }
+        .mission{text-align: center; 
+            font-family: "Poetsen One", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            font-size:large;
+            }
+        .line{text-align: center;
+            font-family: "Poetsen One", sans-serif;
+            font-weight: 200;
+            font-style: normal;
+            font-size:medium;
+        text-indent: 5px;}
+        .nav-menu{font-family: "Briem Hand", cursive; 
+        font-optical-sizing: auto;
+        font-weight: 900;
+        font-style: normal;
+        word-spacing: 10px;
+        text-align: center;
+        padding: 15px;}
+        .nav-menu a:hover{
+            background-color: aquamarine;
+        }
+        ul, ol {
+            list-style: none;
+        }
+        .list {
+    position: absolute;
+    top: 125px; /* Adjust this value as needed */
+    right: 10px; /* Adjust this value as needed */
+    text-align: left;
+    padding: 1px;
+    display: flex;
+    clear: both;
+}
+        @media only screen and (max-width: 100px){
+        .logo-image {display:none;}}
+        body{background-color: #ffffff;}
+        .index{background-color:#87c3f4;
+            }
+        .img2{}
+    .main-mission{float: inline-end;}
+    .main-contact{float: inline-end;}
+
+    .collage-container {
+            width: 450px; /* Adjust container width as needed */
+            height: 300px; /* Adjust container height as needed */
+            position: relative;
+            overflow: hidden;
+        }
+        .collage-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .collage-container img.active {
+            opacity: 1;
+        }
+
+        .header2{
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        @media only screen and (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            .header h1 {
+                font-size: large;
+            }
+            .nav-menu {
+                font-size: small;
+            }
+            .line {
+                font-size: small;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Briem+Hand:wght@100..900&family=Poetsen+One&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="../favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" href="../favicon/favicon-32x32.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Briem+Hand:wght@100..900&display=swap" rel="stylesheet">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    let index = 0;
+    const images = document.querySelectorAll('.collage-container img');
+
+    function changeImage() {
+        images.forEach((img, i) => {
+            if (i === index) {
+                img.classList.add('active');
+            } else {
+                img.classList.remove('active');
+            }
+        });
+        index = (index + 1) % images.length;
+        setTimeout(changeImage, 5000); // Change image every 5 seconds
+    }
+
+    // Start the image rotation
+    changeImage();
+});
+
+    
+        let index = 0;
+    const images = document.querySelectorAll('.collage-container img');
+
+    function changeImage() {
+    images.forEach((img, i) => {
+        if (i === index) {
+            img.classList.add('active');
+        } else {
+            img.classList.remove('active');
+        }
+    });
+    index = (index + 1) % images.length;
+    setTimeout(changeImage, 5000); // Change image every 5 seconds
+}
+
+// Start the image rotation
+    window.onload = changeImage;
+
+    </script>
+</head>
+<body class ="index">
+    <div class="img1">
+        <p><img alt="logo-with-two-hands" width="275" height="225" src="../images/whitephoto.jpg" alt="Life In Haiti Logo" class="img1"></p>
+    </div> 
+    <div class="header">
+        <div class="header2">
+        <h1 style="color: white;">LifeInHaiti Learning Center</h1>
+        </div>
+    <div class="collage-container">
+        <img src="../images/photo4.jpg" alt="School kids in Haiti with two instructors" class="active">
+        <img src="../images/photo16.jpg" alt="School kids in Haiti with two instructors">
+        <img src="../images/photo9.jpg" alt="School kids in Haiti with two instructors">
+        <img src="../images/photo12.jpg" alt="School kids in Haiti with two instructors">
+    </div>
+    <div class="list">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                        <ul class="sub-nav-group">
+                                
+                                <li class="sub-nav-item"><a style="color: white;" href="" ></a></li>
+                                    
+                                    
+                                <li class="sub-nav-item" ><a style="color: white;" href="calender.html" >Calendar/Events</a></li>
+    
+    
+                                <li class="sub-nav-item"><a style="color: white;" href="https://gofund.me/7f0cb25c" >Donations</a></li>
+    
+                                
+                                <li class="sub-nav-item"><a style="color: white;" href="photoalbum.html" >Photo Album</a></li>
+                        </ul>        
+            </li>         
+        </ul>     
+    </div>
+    </div>
+<div class="main-mission">
+    <div class="mission">     
+         <h3 style="color: white;">Our Mission</h3>
+    </div>
+        <div class="line"><hr>
+            <p style="color: white;">Our goal is to get children off the streets right now. Offer  a safe environment for them to learn and grow.
+                Our classroom will offer Math,History,science,reading/writing English classes, agriculture classes, computer literacy
+                problem solving
+                critical thinking courses.</p>
+    </div>
+</div>
+<div class="main-contact">
+    <div class="contact">     
+         <h3 style="color: white;">Contact</h3>
+    </div>
+        <div class="line"><hr>
+            <p style="color: white;"> <a rel="facebook link to LifeInHaiti with Marie" href = "https://mobile.facebook.com/liFEINHAITIWITHMARIE/?ref=bookmarks">Facebook</a>|
+
+                                        <a rel="instagram link to LifeInHaiti with Marie" href= "https://www.instagram.com/lifeinhaiti_withmarie_/">Instagram</a>|
+
+                                        EMAIL: lifeinhaiti10@yahoo.com |
+
+                                        PHONE : +509 4765 0087</p>
+    </div>
+</div>
+</body>
+</html>
