@@ -1,444 +1,442 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <style>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
     body {
-      font-family: 'Roboto', sans-serif;
-      font-weight: 400;
-    }
-
-    h3, h4, h5 {
-      font-weight: 300 !important;
-    }
-
-    .calendar-wrapper {
-      height: auto;
-      max-width: 730px;
-      margin: 0 auto;
-    }
-
-    .calendar-header {
-      background-color: rgba(18, 15, 25, 0.25);
-      height: 100%;
-      padding: 20px;
-      color: #fff;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      position: relative;
-    }
-
-    .header-title {
-      padding-left: 15%;
-    }
-
-    .header-background {
-      background-image: url("https://raw.githubusercontent.com/JustMonk/codepen-resource-project/master/img/compressed-header.jpg");
-      height: 200px;
-      background-position: center right;
-      background-size: cover;
-    }
-
-    .calendar-content {
-      background-color: #fff;
-      padding: 20px;
-      padding-left: 15%;
-      padding-right: 15%;
-      overflow: hidden;
-    }
-
-    .event-mark {
-      width: 5px;
-      height: 5px;
-      background-color: teal;
-      border-radius: 100px;
-      position: absolute;
-      left: 46%;
-      top: 70%;
-    }
-
-    .calendar-footer {
-      height: 200px;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      text-align: center;
-      background-color: #4b6289 !important;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .addForm {
-      position: absolute;
-      top: 100%;
-      width: 100%;
-      height: 100%;
-      background-color: #4b5889 !important;
-      transition: top 0.5s cubic-bezier(1, 0, 0, 1);
-      padding: 0 5px 0 5px;
-    }
-
-    .addForm input {
-      color: #fff;
-    }
-
-    .addForm .row {
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
-      margin-bottom: 0;
-    }
-
-    .addForm h4 {
-      color: #fff;
-      margin-bottom: 1rem;
-    }
-
-    .addEventButtons {
-      text-align: right;
-      padding: 0 0.75rem 0 0.75rem;
-    }
-
-    .addEventButtons a {
-      color: black;
-      font-weight: 300;
-    }
-
-    .emptyForm {
-      padding: 20px;
-      padding-left: 15%;
-      padding-right: 15%;
-    }
-
-    .emptyForm h4 {
-      color: #fff;
-      margin-bottom: 2rem;
-    }
-
-    .sidebar-wrapper {
-      color: #fff;
-      background-color: #5a649c !important;
-      padding-top: 0;
-      padding-bottom: 20px;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .sidebar-title {
-      padding: 50px 6% 50px 12%;
-    }
-
-    .sidebar-title h4 {
-      margin-top: 0;
-    }
-
-    .sidebar-events {
-      overflow-x: hidden;
-      overflow-y: hidden;
-      margin-bottom: 70px;
-    }
-
-    .empty-message {
-      font-size: 1.2rem;
-      padding: 15px 6% 15px 12%;
-    }
-
-    .eventCard {
-      background-color: #fff;
-      color: black;
-      padding: 12px 24px 12px 24px;
-      border-bottom: 1px solid #E5E5E5;
-      white-space: nowrap;
-      position: relative;
-      animation: slideInDown 0.5s;
-    }
-
-    .eventCard-header {
-      font-weight: bold;
-    }
-
-    .eventCard-description {
-      color: grey;
-    }
-
-    .eventCard-mark-wrapper {
-      position: absolute;
-      right: 0;
-      top: 0;
-      height: 100%;
-      width: 60px;
-      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 1) 100%);
-    }
-
-    .eventCard-mark {
-      width: 8px;
-      height: 8px;
-      background-color: #b39ddb;
-      border-radius: 100px;
-      position: absolute;
-      left: 50%;
-      top: 45%;
-    }
-
-    .day-mark {
-      width: 7px;
-      height: 7px;
-      background-color: #b39ddb;
-      border-radius: 100px;
-      position: absolute;
-      left: 47%;
-      top: 67%;
-    }
-
-    .content-wrapper {
-      padding-top: 50px;
-      padding-bottom: 50px;
-      margin-left: 300px;
-    }
-
-    #table-body .col:hover {
-      cursor: pointer;
-      background-color: #E0E0E0;
-    }
-
-    .empty-day:hover {
-      cursor: default !important;
-      background-color: #fff !important;
-    }
-
-    #table-body .row .col {
-      padding: .75rem;
-    }
-
-    #table-body .col {
-      border: 1px solid transparent;
-    }
-
-    #table-body .row {
-      margin-bottom: 0;
-    }
-
-    #table-body .col {
-      padding-top: 1.3rem !important;
-      padding-bottom: 1.3rem !important;
-    }
-
-    #calendar-table {
-      text-align: center;
-    }
-
-    .prev-button {
-      position: absolute;
-      cursor: pointer;
-      left: 0%;
-      top: 35%;
-      color: grey !important;
-    }
-
-    .prev-button i {
-      font-size: 4em;
-    }
-
-    .next-button {
-      position: absolute;
-      cursor: pointer;
-      right: 0%;
-      top: 35%;
-      color: grey !important;
-    }
-
-    .next-button i {
-      font-size: 4em;
-    }
-
-    .addEvent {
-      box-shadow: 0 5px 15px rgb(57, 168, 228);
-      background-color: #39a8e4;
-      padding: 10px;
-      padding-left: 3em;
-      padding-right: 3em;
-      cursor: pointer;
-      border-radius: 25px;
-      color: #fff !important;
-      background-image: linear-gradient(135deg, #8d8dd4, #45ced4);
-    }
-
-    .addEvent:hover {
-      transition: box-shadow 0.5s;
-      box-shadow: 0 4px 25px rgb(57, 168, 228);
-    }
-
-    .mobile-header {
-      padding: 0;
-      display: none;
-      padding-top: 20px;
-      padding-bottom: 20px;
-      position: fixed;
-      z-index: 99;
-      width: 100%;
-      background-color: #5a649c !important;
-    }
-
-    .mobile-header a i {
-      color: #fff;
-      font-size: 38px;
-    }
-
-    .mobile-header h4 {
-      color: #fff;
-    }
-
-    .mobile-header .row {
-      margin-bottom: 0;
-    }
-
-    .mobile-header h4 {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 300;
-    }
-
-    @media (max-width: 992px) {
-      .content-wrapper {
-        margin-left: 0;
-      }
-
-      .mobile-header {
-        display: block;
-      }
-
-      .calendar-wrapper {
-        margin-top: 80px;
-      }
-
-      .sidebar-wrapper {
-        background-color: #EEEEEE !important;
-      }
-
-      .sidebar-title {
-        background-color: #5A649C !important;
-      }
-
-      .empty-message {
-        color: black;
-      }
-    }
-
-    @media (max-width: 767px) {
-      .content-wrapper .container {
-        width: auto;
-      }
-
-      .calendar-content {
-        padding-left: 5%;
-        padding-right: 5%;
-      }
-
-      body .row {
-        margin-bottom: 0;
-      }
-
-      .container .row .col {
-        padding: .75rem;
-      }
-
-      .container .row {
-        margin-bottom: 0;
-      }
-
-      .calendar-header .row {
-        margin-bottom: 0;
-      }
-    }
-  </style>
-</head>
-<body>
-
-<div class="content-wrapper">
-  <div class="calendar-wrapper z-depth-2">
-    <div class="calendar-header">
-      <div class="row">
-        <div class="col s12 m4">
-          <h3 id="month" class="header-title">May</h3>
-          <h5 id="year" class="header-title">2024</h5>
-        </div>
-      </div>
-      <div class="header-background"></div>
-    </div>
-    <div class="calendar-content">
-      <div id="calendar-table">
-        <div id="table-header" class="row">
-          <div class="col">Sun</div>
-          <div class="col">Mon</div>
-          <div class="col">Tue</div>
-          <div class="col">Wed</div>
-          <div class="col">Thu</div>
-          <div class="col">Fri</div>
-          <div class="col">Sat</div>
-        </div>
-        <div id="table-body"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="calendar-footer">
-  <a class="addEvent waves-effect waves-light btn">Add Event</a>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const date = new Date();
-    let year = date.getFullYear();
-    let month = date.getMonth();
-
-    function generateCalendar(year, month) {
-      const calendarBody = document.getElementById('table-body');
-      calendarBody.innerHTML = ''; // Clear previous calendar
-
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-      const firstDay = new Date(year, month, 1).getDay();
-      
-      document.getElementById('month').innerText = date.toLocaleString('default', { month: 'long' });
-      document.getElementById('year').innerText = year;
-
-      let row = document.createElement('div');
-      row.classList.add('row');
-
-      // Create empty cells for days of the week before the first of the month
-      for (let i = 0; i < firstDay; i++) {
-        const emptyCell = document.createElement('div');
-        emptyCell.classList.add('col', 'empty-day');
-        row.appendChild(emptyCell);
-      }
-
-      // Create cells for each day of the month
-      for (let day = 1; day <= daysInMonth; day++) {
-        const cell = document.createElement('div');
-        cell.classList.add('col');
-        cell.innerText = day;
-
-        if ((day + firstDay - 1) % 7 === 6) {
-          calendarBody.appendChild(row);
-          row = document.createElement('div');
-          row.classList.add('row');
+  background:#ebebeb;
+  text-align:center;
+  font-family: Helvetica,Arial,sans-serif;
+}
+h1 {
+  font-size:32px;
+  font-weight:100;
+  margin-bottom:16px;
+  margin:20px 0 40px;
+}
+h2 {
+  font-size:14px;
+  font-weight:100;
+  margin-bottom:8px;
+  margin-top:5px;
+}
+h3 { font-size:21px; }
+.container { 
+  max-width:900px;
+  margin:0 auto;
+  text-align:left;
+  padding:0 20px;
+}
+.row { clear:both; }
+.row:after {
+  conttent:' ';
+  display:block;
+  clear:both;
+}
+.col-2 aside {
+  width:20%;
+  float:left;
+}
+.col-2 article {
+  width:80%;
+  float:left;
+}
+
+.eventKey div {
+  display:inline-block;
+  padding:4px;
+  margin:4px 4px 4px 0;
+  float:left;
+  clear:both;
+}
+.monthYear { margin:0px 0 10px 0; padding:0 0 0 8px;}
+.monthYear span { display:none; }
+.days li {
+  color:#333;
+  border-bottom:1px solid #ccc;
+  padding:4px 4px 4px 8px;
+  text-transform:uppercase;
+  font-size:13px;
+}
+.days li, .dates li {
+  float:left;
+  width:14.28%;
+  position:relative;
+  box-sizing:border-box;
+}
+.dates {
+  border-right:1px solid #ccc;
+}
+.dates:after, .days:after {
+  content:'';
+  display:block;
+  clear:both;
+}
+.dates li {
+  border:1px solid #ccc;
+  border-width:0 0 1px 1px;
+  height:90px;
+  margin:0;
+  background:#fff;
+}
+.dateWrapper {
+  max-height:90px;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  transition: max-height 1s;
+}
+.dateWrapper.open {
+  max-height:600px;
+  z-index:10;
+  padding-bottom:25px;
+  background:#fff;
+  border-bottom:1px solid #ccc;
+  box-shadow:0 0 10px #333;
+}
+.dates li.fade {
+  color:#ccc;
+  opacity:0.6;
+}
+.date, .dates li a {
+  display:block;
+  padding:4px;
+  text-align:right;
+  font-size:13px;
+}
+.dates li a, .eventKey div {
+  text-align:left;
+  text-decoration:none;
+  font-size: 12px;
+  color:#fff;
+  border-radius:2px;
+}
+.dates li a, .dates li div {
+  margin:4px 2px 0;
+}
+.dates li a.expand {
+  display:block;
+  background:linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 26%,rgba(0,0,0,0.50) 100%);
+  position:absolute;
+  bottom:0px;
+  left:0;
+  width:100%;
+  text-align:left;
+  padding:4px 0 0 0;
+  margin:0;
+  border-radius:0;
+}
+.dates li a.expand.open {
+  
+}
+.dates li a.expand span {
+  display:inline-block;
+  float:right;
+  padding:4px 8px;
+  transition: transform 1s ease-in-out;
+  
+}
+.dates li a.expand.open span {
+	transform: rotate(45deg);
+  color:#333;
+}
+
+.dates li a b {
+  font-weight:bold;
+}
+.multidayHolder {
+  position:relative;
+  height:20px;
+  padding:0;
+  margin:4px 0 0 0;
+}
+.dates li a.multidayEvent {
+  position: absolute; 
+  top:0;
+  left:0;
+  z-index:100;
+  display:none;
+  margin:0;
+}
+.multidayEvent span, .holiday span  { display:none;}
+.dates li a.length-2 {width:196%; display:block; }
+.dates li a.length-3 {width:301%; display:block;}
+.tradeShow, .tradeShow:before { background:#e86542; color:#fff;}
+.meeting, .meeting:before { background:#0359a6; color:#fff;}
+.holiday, .holiday:before { background:#5fa8aa; color:#fff;}
+.birthday, .birthday:before { background:#f8a805; color:#fff;}
+.calendarNav {
+  display:none;
+}
+@media (max-width: 744px) { 
+  body {
+    background:#fff;
+  }
+	.col-2 aside, .col-2 article {
+    width:100%;
+    float:none;
+    clear:both;
+  }
+	.eventKey div {
+    clear:none;
+  }
+  .monthYear { 
+    padding:20px 0 20px 23px; 
+    margin:0;
+    border-bottom:1px solid #ccc;
+  }
+	.monthYear span { display:inline; }
+	.days, .dates li, .dates li a.expand { display:none; }
+  .dates li.current, .dates li a.multidayEvent, .calendarNav {
+   display:block;
+   position:static;
+   width:auto;
+  }
+  .multidayHolder {
+    height:auto;
+  }
+  .dates {border:none;}
+  .dates li.current {
+    width:100%;
+    height:auto;
+    border:none;
+    position: relative;
+    display:block;
+  }
+  .dateWrapper { width:100%; height:auto; position:static; max-height:1000px;}
+  .date {
+    text-align:left;
+    position:absolute;
+    top:-46px;
+    left:0px;
+    font-size:21px;
+  }
+  .multidayEvent span, .holiday span  {
+    position:static;
+    margin-top:4px;
+    color:#999;
+   display:block;
+   text-align:left;
+  }
+  .dates li a {
+    background:none;
+    color:#333;
+    position:relative;
+    font-size:14px;
+    padding:25px 0 25px 35px;
+    margin:5px 0;
+    border-bottom:1px solid #ccc;
+    min-height:45px;
+  }
+  .dates li a:before {
+    content: '';
+    display: block;
+    width: 17px;
+    height: 17px;
+    border-radius: 17px;
+    position: absolute;
+    top: 30%;
+    left: 0;
+  }
+  .dates li a:after  {
+    content: '';
+    display:block;
+    position: absolute;
+    top:42%;
+    right:20px;
+    border:1px solid #ccc;
+    border-width:1px 1px 0 0;
+    width:15px;
+    height:15px;
+    transform: rotate(45deg);
+  }
+  .dates li a b { display:block; margin-bottom:4px; }
+  .calendarNav {
+    padding:20px 0;
+    text-align:center;
+  }
+  .calendarNav a {
+  	clear:both;
+    display:inline-block;
+    color:#333;
+    text-decoration:none;
+    padding:6px 10px;
+    border-radius:4px;
+    background:#d6d6d6;
+    border:1px solid #999;
+    border-width:0 1px 1px 0;
+    margin-right:6px;
+    font-size:14px;
+  }
+  
+}
+@media only screen and (max-width: 600px) {
+            .list{
+                float:left;
+                padding-left:40px;
+            }
+            .nav-menu {
+                font-size: small;
+            }}
+            .nav-menu{font-family: "Briem Hand", cursive; 
+        font-optical-sizing: auto;
+        font-weight: 900;
+        font-style: normal;
+        word-spacing: 10px;
+        text-align: center;
+        padding: 15px;
+        font-size: medium;}
+
+        .nav-menu a:hover{
+            background-color: aquamarine;
         }
 
-        row.appendChild(cell);
-      }
-
-      calendarBody.appendChild(row); // Append the last row
-    }
-
-    generateCalendar(year, month);
-  });
+        ul, ol {
+            list-style: none;
+        }
+        .list{
+            float:right;
+            text-align: left;
+            padding:1px;
+            }
+    </style>
+<script>
+   $('a.nextDay').click(function() { 
+  $('li.current').next().addClass('current').prev().removeClass('current');
+});
+  $('a.prevDay').click(function() { 
+  $('li.current').prev().addClass('current').next().removeClass('current');
+});
+$('a.today').click(function(){
+  $('li.current').removeClass('current');
+  $('li.today').addClass('current');
+});
+$('a.expand').click(function(){
+  $(this).parent().toggleClass('open');
+  $(this).toggleClass('open');
+});
 </script>
+  </head>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <body>
+    <div class="list">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                        <ul class="sub-nav-group">
+                                <li class="sub-nav-item"><a style="color: black;" href="index.html" >Return to Home Page</a></li>
 
-</body>
+                                <li class="sub-nav-item"><a style="color: black;" href="faculty.html" >Faculty/Staff</a></li>
+                                    
+                                    
+                                <li class="sub-nav-item" ><a style="color: black;" href="calendar2.html" >Calendar/Events</a></li>
+    
+    
+                                <li class="sub-nav-item"><a style="color: black;" href="https://gofund.me/7f0cb25c" >Donations</a></li>
+    
+                                
+                                <li class="sub-nav-item"><a style="color: black;" href="photoalbum.html" >Photo Album</a></li>
+                        </ul>        
+            </li>         
+        </ul>     
+    </div>
+    <div class="container">
+        <div class="row">
+            <h1>Calendar of Events</h1>
+        </div>
+        <div class="row col-2">
+            <aside class="eventKey">
+                <h2>Event Key</h2>
+                <div class="tradeShow">Festival</div>
+                <div class="holiday">No School</div>
+                <div class="meeting">Staff Meeting</div>
+                <div class="birthday">Testing</div>
+            </aside>
+            <article>
+          <h3 class="monthYear"><span>,</span> May 2024 </h3>
+              <ul class="days">
+                <li>Sun</li>
+                <li>Mon</li>
+                <li>Tues</li>
+                <li>Wed</li>
+                <li>Thurs</li>
+                <li>Fri</li>
+                <li>Sat</li>
+              </ul>
+                <ul class="dates">
+            <li class="fade"><span class="date">29</span></li>
+            <li class="fade"><span class="date">30</span></li>
+                    <li><span class="date">1</span></li>
+                    <li>
+              <section class="dateWrapper">
+                        <span class="date">2</span>
+                        <div class="multidayHolder"><a href="#" class="multidayEvent tradeShow length-2"> <span></span></a></div>
+              </section>
+                    </li>
+                    <li class="current today">
+                <section class="dateWrapper">
+                  <span class="date">3</span>
+                  <div class="multidayHolder"><a href="#" class="multidayEvent tradeShow secondaryDay">No School <span>2 - 3</span></a></div>
+                  <a href="#" class="meeting"><b></b>No School </a>
+                  <a href="#" class="expand"><span> + </span></a>
+                 </section>
+                    </li>
+                    <li><span class="date">4</span>
+              <a href="#" class="holiday"> <span>Christmas</span></a>
+                    </li>
+                    <li><span class="date">5</span></li>
+                    <li><span class="date">6</span></li>
+                    <li><span class="date">7</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">8</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">9</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">10</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">11</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">12</span></li>
+                    <li><span class="date">13</span></li>
+                    <li><span class="date">14</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">15</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li>
+                        <span class="date">16</span>
+                        <div class="multidayHolder"><a href="#" class="multidayEvent tradeShow length-3"> <span></span></a></div> <a href="#" class="meeting"><b></b> </a>
+                    </li>
+                    <li>
+                        <span class="date">17</span>
+                        <div class="multidayHolder"><a href="#" class="multidayEvent tradeShow secondaryDay"> <span></span></a></div> <a href="#" class="meeting"><b></b> </a>
+                    </li>
+                    <li>
+                        <span class="date">18</span>
+                        <div class="multidayHolder"><a href="#" class="multidayEvent tradeShow secondaryDay"> <span></span></a></div> <a href="#" class="meeting"><b></b> </a>
+                    </li>
+                    <li>
+                        <span class="date">19</span>
+                        <a href="http://amzn.com/w/HOLLMHU0B93L" target="_blank" class="birthday"><b></b> </a>
+                    </li>
+                    <li><span class="date">20</span></li>
+                    <li><span class="date">21</span> <a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">22</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">23</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">24</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">25</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">26</span></li>
+                    <li><span class="date">27</span></li>
+                    <li><span class="date">28</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">29</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li><span class="date">30</span><a href="#" class="meeting"><b></b> </a></li>
+                     <li><span class="date">31</span><a href="#" class="meeting"><b></b> </a></li>
+                    <li class="fade"><span class="date">1</span></li>
+                    <li class="fade"><span class="date">2</span></li>
+                </ul>
+          <div class="calendarNav">
+              <a href="#prevDay" class="prevDay">Previous Day</a> 
+              <a href="#today" class="today">Current Day</a>
+              <a href="#" class="nextDay">Next Day</a>
+          </div>
+            </article>
+        </div>
+    </div>
+  </body>
 </html>
