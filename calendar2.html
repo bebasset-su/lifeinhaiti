@@ -9,6 +9,20 @@
     <link rel="icon" href="../favicon/favicon-32x32.png" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
+    .list{float:inline-end; position: absolute;
+    top: 125px; /* Adjust this value as needed */
+    right: 10px; /* Adjust this value as needed */
+    text-align: left;
+    padding: 1px;
+    display: flex;
+    clear: both;}
+    .nav-menu{font-family: "Briem Hand", cursive;
+        font-optical-sizing: auto; 
+        font-weight: 900;
+        font-style: normal;
+        word-spacing: 10px;
+        text-align: center;
+        padding: 15px;}
 .img1{float: left; padding: 5px; flex-wrap: inherit; padding-bottom: 5px;}
 body {
   background:#ffffff;
@@ -276,40 +290,22 @@ h1 {padding-left: 347px; }
     background:#d6d6d6;
     border:1px solid #999;
     border-width:0 1px 1px 0;
-    margin-right:6px;
-    font-size:14px;
-  }
-  
-}
+    margin-right:6px}}
 @media only screen and (max-width: 600px) {
-            .list{
-                float:left;
-                padding-left:40px;
-            }
-            .nav-menu {
-                font-size: small;
+            .header h1 { font-size: large; }
+            .nav-menu { font-size: small; }
+            .line { font-size: small; }
+            .img1 {  width: 200px; /* Adjust as needed for mobile */
+                height: auto; /* Maintain aspect ratio */ }
+            .header2 {padding-right: 50px;
+                    left:10px;}
+            .list {padding-bottom: 100px;
+                top:45px;
+                right:10px;}
+            .collage-container {width: 275px;
+                height: 200px;
+            right:33px;
             }}
-            .nav-menu{font-family: "Briem Hand", cursive; 
-        font-optical-sizing: auto;
-        font-weight: 900;
-        font-style: normal;
-        word-spacing: 10px;
-        text-align: center;
-        padding: 15px;
-        font-size: medium;}
-
-        .nav-menu a:hover{
-            background-color: aquamarine;
-        }
-
-        ul, ol {
-            list-style: none;
-        }
-        .list{
-            float:right;
-            text-align: left;
-            padding-top:10px;
-            }
     </style>
 <script>
    $('a.nextDay').click(function() { 
@@ -359,10 +355,10 @@ $('a.expand').click(function(){
         <div class="row col-2">
             <aside class="eventKey">
                 <h2>Event Key</h2>
-                <div class="tradeShow">Festival</div>
-                <div class="holiday">No School</div>
-                <div class="meeting">Staff Meeting</div>
-                <div class="birthday">Testing</div>
+                <div class="tradeShow"></div>
+                <div class="holiday"></div>
+                <div class="meeting"> </div>
+                <div class="birthday"></div>
             </aside>
             <article>
           <h3 class="monthYear"><span>,</span> June 2024 </h3>
