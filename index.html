@@ -43,6 +43,50 @@
         ul, ol {
             list-style: none;
         }
+        .collage {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    position: relative;
+}
+
+.image-container1 {
+    position: relative;
+}
+
+.image-container img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+#arrow1 {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    align-self: center;
+}
+
+#arrow2 {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    justify-self: center;
+}
+
+#arrow3 {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    align-self: center;
+}
         .list {
     position: absolute;
     top: 125px; /* Adjust this value as needed */
@@ -201,11 +245,22 @@
     <div class="mission">
         <h3 style="color: white;">Thank you guys so much for donating to us we have alot in the works for the future of our learning center!!! Here are some videos and pictures below!</h3>
     </div>
-    <div class="collage-container">
-        <img src="../images/photo4.jpg" alt="School kids in Haiti with two instructors" class="active">
-        <img src="../images/photo16.jpg" alt="School kids in Haiti with two instructors">
-        <img src="../images/photo9.jpg" alt="School kids in Haiti with two instructors">
-        <img src="../images/photo12.jpg" alt="School kids in Haiti with two instructors">
+    <div class="collage1">
+        <div class="image-container1" id="imge1">
+            <img src="image1.jpg" alt="Image1">
+        </div>
+        <div class="arrow" id="arrow1">→</div>
+        <div class="image-container1" id="imge2">
+            <img src="image2.jpg" alt="Image 2">
+        </div>
+        <div class="arrow" id="arrow2">↓</div>
+        <div class="image-container1" id="imge3">
+            <img src="image3.jpg" alt="Image 3">
+        </div>
+        <div class="arrow" id="arrow3">→</div>
+        <div class="image-container1" id="imge4">
+            <img src="image4.jpg" alt="Image 4">
+        </div>
     </div>
 </div>
 <div class="main-contact">
