@@ -220,8 +220,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Briem+Hand:wght@100..900&display=swap" rel="stylesheet">
     <script>
 
-        let slideIndex = 1;
-showSlides(slideIndex);
+let slideIndex = 1;
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].className += " active";
+}
 
 // Next/previous controls
 function plusSlides(n) {
@@ -233,40 +252,26 @@ function currentSlide(n) {
   showSlides(slideIndex = n);
 }
 
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+document.addEventListener('DOMContentLoaded', function() {
+  showSlides(slideIndex);
+
+  let index = 0;
+  const images = document.querySelectorAll('.collage-container img');
+
+  function changeImage() {
+    images.forEach((img, i) => {
+      if (i === index) {
+        img.classList.add('active');
+      } else {
+        img.classList.remove('active');
+      }
+    });
+    index = (index + 1) % images.length;
+    setTimeout(changeImage, 5000); // Change image every 5 seconds
   }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
 
-        document.addEventListener('DOMContentLoaded', function() {
-    let index = 0;
-    const images = document.querySelectorAll('.collage-container img');
-
-    function changeImage() {
-        images.forEach((img, i) => {
-            if (i === index) {
-                img.classList.add('active');
-            } else {
-                img.classList.remove('active');
-            }
-        });
-        index = (index + 1) % images.length;
-        setTimeout(changeImage, 5000); // Change image every 5 seconds
-    }
-
-    // Start the image rotation
-    changeImage();
+  // Start the image rotation
+  changeImage();
 });
 
     
