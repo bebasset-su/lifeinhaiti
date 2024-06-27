@@ -190,17 +190,23 @@
 
             .slideshow-container {
             max-width: 100%;
-            margin-left: 200%;
+            margin-left: 0; /* Adjust for mobile */
             }
-            .mySlides fade {
-            margin-left: 350%;
+
+            .mySlides {
+            margin-left: 0; /* Adjust for mobile */
             width: 100%;
-            max-height: fit-content;
             }
+
             .prev, .next {
-        font-size: 12px;
-        padding: 10px;
-        }
+            font-size: 12px;
+            padding: 10px;
+            }
+
+            .mySlides img, .mySlides video {
+            width: 100% !important; /* Ensure full width */
+            margin: 0 auto; /* Center align */
+            }
             }}
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
